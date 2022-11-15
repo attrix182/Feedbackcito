@@ -52,6 +52,12 @@
   }
 }
 
+.skeleton-container {
+  margin-top: 20vh;
+  display: flex;
+  margin-left: 2vw;
+}
+
 @media screen and (max-width: 940px) {
   #landing-image {
     display: none;

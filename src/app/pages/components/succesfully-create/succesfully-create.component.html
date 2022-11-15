@@ -1,0 +1,33 @@
+<p-toast position="top-right" class="p-toast"></p-toast>
+
+<section class="create-form">
+  <div class="card">
+    <div class="title">Datos de la sesión</div>
+    {{ event.eventDate }}
+    <div class="subtitle">Codigo: {{ event.id }}</div>
+    <ng-template pTemplate="header">
+      <!-- <img alt="Card" src="../../../../assets/img/landing-2.svg" /> -->
+    </ng-template>
+
+    <h2>
+      {{ event.team }}
+    </h2>
+    <h3>
+      {{ event.eventTitle }}
+    </h3>
+
+    <p [ngClass]="copied ? 'copied' : ''">
+      Link:
+      <a href="https://feedbackcito.netlify.app/'{{ event.id }}" id="eventLink"
+        >https://feedbackcito.netlify.app/{{ event.id }}</a
+      >
+    </p>
+
+    <div class="buttons mt-4">
+      <button pButton class="p-button-raised p-button-primmary" (click)="copyLink()">Copiar link</button>
+      <button pButton class="p-button-raised p-button-primmary" (click)="goToPanel()">Ver respuestas</button>
+    </div>
+  </div>
+</section>
+
+<p-toast position="top-right" class="p-toast"></p-toast>
