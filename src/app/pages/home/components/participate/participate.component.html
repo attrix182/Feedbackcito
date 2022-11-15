@@ -1,0 +1,22 @@
+<p-toast position="top-right" class="p-toast"></p-toast>
+
+<section class="create-form">
+  <div class="card">
+    <div class="title">Participar</div>
+    <div class="subtitle">Ingrese el codigo de la sesion</div>
+
+
+<h3>Codigo</h3>
+<span class="p-input-icon-right">
+    <i class="pi pi-search"></i>
+    <input type="text" placeholder="Codigo.." pInputText [(ngModel)]="sesionId"/>
+</span>
+
+    <div class="buttons mt-4">
+      <!-- <button pButton class="p-button-raised p-button-primmary">Pegar</button> -->
+      <button [disabled]="sesionId.length > 5 ? false : true" pButton class="p-button-raised p-button-primmary" (click)="goToSesion()">Ingresar</button>
+    </div>
+  </div>
+</section>
+
+<p-toast position="top-right" class="p-toast"></p-toast>

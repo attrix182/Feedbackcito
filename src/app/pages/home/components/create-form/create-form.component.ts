@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { StorageService } from 'src/app/services/sevices/storage.service';
+import { StorageService } from 'src/app/services/storage.service';
 import { FormValidator } from 'src/app/shared/primeng/form.validator';
 
 @Component({
