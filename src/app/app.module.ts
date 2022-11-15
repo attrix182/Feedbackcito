@@ -14,6 +14,7 @@ import { ParticipateComponent } from './pages/home/components/participate/partic
 import { CommonModule } from '@angular/common';
 import { ParticipantViewComponent } from './pages/participant-view/participant-view.component';
 import { QrCodeModule } from 'ng-qrcode';
+import { FeedbackViewComponent } from './pages/feedback-view/feedback-view.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { QrCodeModule } from 'ng-qrcode';
     CreateFormComponent,
     SuccesfullyCreateComponent,
     ParticipateComponent,
-    ParticipantViewComponent
+    ParticipantViewComponent,
+    FeedbackViewComponent
   ],
   imports: [
     BrowserModule,
