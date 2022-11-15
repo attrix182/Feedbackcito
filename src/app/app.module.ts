@@ -9,7 +9,6 @@ import { PrimengModule } from './shared/primeng/primeng.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CreateFormComponent } from './pages/components/create-form/create-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +24,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PrimengModule,
     BrowserAnimationsModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
