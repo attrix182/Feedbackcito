@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'fc-feedback-view',
@@ -6,10 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./feedback-view.component.scss']
 })
 export class FeedbackViewComponent implements OnInit {
+  feedback:any;
+  loading: boolean = true;
+  getId = this.router.url.split('/')[2].trim();
 
-  constructor() { }
+
+  constructor(private router:Router, private storageSvc:StorageService) { }
 
   ngOnInit(): void {
+    this.getFeedback();
+  }
+
+  getFeedback(){
+    this.loading = true;
+    this.storageSvc.GetByParameter('feedbacks', 'id', this.getId).subscribe((res:any)=>{
+      this.feedback = res;
+      console.log(this.feedback);
+      this.loading = false;
+    })
   }
 
 }
