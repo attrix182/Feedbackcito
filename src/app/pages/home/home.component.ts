@@ -1,7 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { StorageService } from 'src/app/services/sevices/storage.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'fc-home',
@@ -33,6 +33,7 @@ import { StorageService } from 'src/app/services/sevices/storage.service';
 export class HomeComponent implements OnInit {
   showCreate: boolean = false;
   succesfullyCreate: boolean = false;
+  showParticipate: boolean = false;
   idHandled: string;
   event: any;
   loading: boolean = false;
@@ -48,7 +49,14 @@ export class HomeComponent implements OnInit {
     this.showCreate = !this.showCreate;
   }
 
+  toggleShowParticipate() {
+    this.showParticipate = !this.showParticipate;
+  }
+
   checkUrl() {
+    if (this.actualSection === 'participate') {
+      this.showParticipate = true;
+    }
     if (this.actualSection.length > 1) {
       this.storageSvc.GetByParameter('events', 'id', this.actualSection).subscribe((res: any) => {
         console.log(res);

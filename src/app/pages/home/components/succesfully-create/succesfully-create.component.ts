@@ -14,14 +14,14 @@ export class SuccesfullyCreateComponent  {
   constructor(private messageSvc:MessageService, private router:Router) { }
 
   copyLink(){
-    let url = 'https://feedbackcito.netlify.app/#/'+this.event.id;
+    let url = 'https://feedbackcito.netlify.app/#/sesion/'+this.event.id;
     navigator.clipboard.writeText(url);
     this.copied = true;
     this.messageSvc.add({severity:'success', summary:'Link Copiado', detail:'El link ha sido copiado al portapapeles'});
   }
 
   goToPanel(){
-    window.open('https://feedbackcito.netlify.app/#/'+this.event.id);
+    window.open('https://feedbackcito.netlify.app/#/sesion/'+this.event.id);
   }
 
 }
