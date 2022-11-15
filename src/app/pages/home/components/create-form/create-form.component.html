@@ -16,7 +16,7 @@
 
       <!-- Titulo -->
       <h3 for="">Titulo de evento</h3>
-      <input type="text" placeholder="Equipo" pInputText type="text"formControlName="eventTitle" />
+      <input type="text" placeholder="Titulo del evento" pInputText type="text"formControlName="eventTitle" />
 
       <!-- Fecha -->
       <h3 for="">Fecha del evento</h3>
@@ -25,7 +25,7 @@
 
     <div class="buttons mt-4">
       <button pButton class="p-button-raised p-button-primmary" (click)="back.emit()">Volver</button>
-      <button pButton class="p-button-raised p-button-primmary" (click)="nextStep()">Siguiente</button>
+      <button pButton class="p-button-raised p-button-primmary" [disabled]="!formGroup.valid" (click)="nextStep()">Siguiente</button>
     </div>
   </div>
 </section>

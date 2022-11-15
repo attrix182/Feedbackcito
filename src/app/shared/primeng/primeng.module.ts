@@ -27,7 +27,6 @@ const PrimeNGModules = [
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
     ...PrimeNGModules
 
   ],

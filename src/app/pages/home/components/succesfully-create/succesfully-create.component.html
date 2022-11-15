@@ -4,7 +4,7 @@
   <div class="card">
     <div class="title">Datos de la sesión</div>
     {{ event.eventDate }}
-    <div class="subtitle">Codigo: {{ event.id }}</div>
+    <div class="subtitle">Código: {{ event.id }}</div>
     <ng-template pTemplate="header">
       <!-- <img alt="Card" src="../../../../assets/img/landing-2.svg" /> -->
     </ng-template>
@@ -16,9 +16,11 @@
       {{ event.eventTitle }}
     </h3>
 
+    <qr-code [value]="'https://feedbackcito.netlify.app/#/sesion/{{ event.id }}'" [size]="200"></qr-code>
+
     <p [ngClass]="copied ? 'copied' : ''">
       Link:
-      <a href="https://feedbackcito.netlify.app/#/sesion/'{{ event.id }}" id="eventLink"
+      <a href="https://feedbackcito.netlify.app/#/sesion/{{ event.id }}" id="eventLink"
         >https://feedbackcito.netlify.app/#/sesion/{{ event.id }}</a
       >
     </p>

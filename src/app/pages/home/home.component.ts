@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit {
   event: any;
   loading: boolean = false;
   actualSection = this.router.url.split('/')[1];
+  passID: string;
 
   constructor(private storageSvc: StorageService, private router: Router) {}
 
@@ -54,15 +55,14 @@ export class HomeComponent implements OnInit {
   }
 
   checkUrl() {
-    if (this.actualSection === 'participate') {
+    if (this.actualSection?.length > 2 && this?.actualSection === 'participate') {
       this.showParticipate = true;
-    }
-    if (this.actualSection.length > 1) {
-      this.storageSvc.GetByParameter('events', 'id', this.actualSection).subscribe((res: any) => {
-        console.log(res);
-        this.loading = false;
-        this.event = res[0];
-      });
+    } else {
+      if (this.actualSection.length < 2) {
+        return;
+      }
+      this.showParticipate = true;
+      this.passID = this.actualSection;
     }
   }
 
