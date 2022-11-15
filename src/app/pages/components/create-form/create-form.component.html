@@ -1,11 +1,28 @@
-<section>
-  <p-card header="header" subheader="subheader"  [style]="{width: 'width'}" styleClass="styleClass">
-    <p-header>
-      your header template
-    </p-header>
-    your card template
-    <p-footer>
-      your footer template
-    </p-footer>
-  </p-card>
+<section class="create-form">
+  <div class="card">
+    <div class="title">Crear una sesión</div>
+    <div class="subtitle">Completa el formulario</div>
+    <ng-template pTemplate="header">
+      <!-- <img alt="Card" src="../../../../assets/img/landing-2.svg" /> -->
+    </ng-template>
+
+    <form [formGroup]="formGroup" class="p-fluid p-grid">
+      <!-- Equipo -->
+      <h3 for="">Equipo</h3>
+      <input type="text" placeholder="Equipo" pInputText type="text" />
+
+      <!-- Titulo -->
+      <h3 for="">Titulo de evento</h3>
+      <input type="text" placeholder="Equipo" pInputText type="text" />
+
+      <!-- Fecha -->
+      <h3 for="">Fecha del evento</h3>
+      <input class="p-inputtext-lg" type="date" pInputText />
+    </form>
+
+    <div class="buttons mt-4">
+      <button pButton class="p-button-raised p-button-primmary" (click)="back.emit()">Volver</button>
+      <button pButton class="p-button-raised p-button-primmary">Siguiente</button>
+    </div>
+  </div>
 </section>

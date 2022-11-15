@@ -7,21 +7,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
   animations: [
     trigger(
-      'enterAnimation', [
+      'exitAnimationY', [
+        transition(':leave', [
+          style({transform: 'translateY(0)', opacity: 0}),
+          animate('500ms', style({transform: 'translateY(100%)', opacity: 1}))
+        ]),
         transition(':enter', [
-          style({transform: 'translateX(100%)', opacity: 0}),
-          animate('500ms', style({transform: 'translateX(0)', opacity: 1}))
+          style({transform: 'translateY(100%)', opacity: 1}),
+          animate('500ms', style({transform: 'translateY(0)', opacity: 0}))
+        ])
+      ],
+
+    ),
+    trigger(
+      'enterAnimationY', [
+        transition(':enter', [
+          style({transform: 'translateY(100%)', opacity: 0}),
+          animate('700ms', style({transform: 'translateY(0)', opacity: 1}))
         ]),
         transition(':leave', [
-          style({transform: 'translateX(0)', opacity: 1}),
-          animate('500ms', style({transform: 'translateX(100%)', opacity: 0}))
+          style({transform: 'translateY(0)', opacity: 1}),
+          animate('500ms', style({transform: 'translateY(100%)', opacity: 0}))
         ])
-      ]
+      ],
+
     )
   ],
 })
 export class HomeComponent implements OnInit {
-  showCreate:boolean = false;
+  showCreate:boolean = true;
 
   constructor() { }
 
