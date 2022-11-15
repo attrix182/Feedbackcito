@@ -9,11 +9,13 @@ import { PrimengModule } from './shared/primeng/primeng.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CreateFormComponent } from './pages/components/create-form/create-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SuccesfullyCreateComponent } from './pages/components/succesfully-create/succesfully-create.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CreateFormComponent
+    CreateFormComponent,
+    SuccesfullyCreateComponent
   ],
   imports: [
     BrowserModule,
