@@ -27,7 +27,7 @@ export class SuccesfullyCreateComponent  {
   }
 
   goToPanel(){
-    window.open('https://feedbackcito.netlify.app/#/sesion/'+this.event.id);
+    window.open('https://feedbackcito.netlify.app/#/results/'+this.event.id);
   }
 
 }
