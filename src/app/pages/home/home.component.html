@@ -1,14 +1,17 @@
 <div class="home-page">
-  <section class="welcome-card" *ngIf="!showCreate && !succesfullyCreate && !loading && !showParticipate" [@exitAnimationY]>
+  <section
+    class="welcome-card"
+    *ngIf="!showCreate && !succesfullyCreate && !showParticipate && !loading"
+    [@exitAnimationY]
+  >
     <h2 class="title text-center">Bienvenido a Feedbackcito</h2>
     <div class="subtitle">
       ¿Que quieres hacer?
       <div class="buttons">
+
+        <button pButton pRipple class="p-button-raised p-button-primmary" (click)="toggleShowCreate()">Crear</button>
         <button pButton pRipple class="p-button-raised p-button-primmary" (click)="toggleShowParticipate()">
           Participar
-        </button>
-        <button pButton pRipple class="p-button-raised p-button-primmary" (click)="toggleShowCreate()">
-          Crear
         </button>
       </div>
     </div>
@@ -23,12 +26,10 @@
   </section>
 
   <section *ngIf="showParticipate" [@enterAnimationY]>
-    <fc-participate></fc-participate>
+    <fc-participate (back)="toggleShowParticipate()" [id]="passID"></fc-participate>
   </section>
 
-
-
-  <section class="skeleton-container" >
+  <section class="skeleton-container">
     <p-skeleton *ngIf="loading" class="skeleton" width="45vw" height="60vh"></p-skeleton>
   </section>
 

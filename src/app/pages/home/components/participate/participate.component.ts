@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -8,17 +8,18 @@ import { StorageService } from 'src/app/services/storage.service';
   styleUrls: ['./participate.component.scss']
 })
 export class ParticipateComponent implements OnInit {
-  sesionId: string = '';
+  @Input('id') sesionId: string = '';
+  @Output('back') goBack: any = new EventEmitter();
 
-  constructor(private storageSvc:StorageService, private router:Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
+
   }
 
-  goToSesion(){
-    if(this.sesionId.length > 5){
-    this.router.navigate(['/sesion/',this.sesionId]);
+  goToSesion() {
+    if (this.sesionId.length > 5) {
+      this.router.navigate(['/sesion/', this.sesionId.trim()]);
     }
   }
-
 }

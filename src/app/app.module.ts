@@ -11,22 +11,28 @@ import { CreateFormComponent } from './pages/home/components/create-form/create-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SuccesfullyCreateComponent } from './pages/home/components/succesfully-create/succesfully-create.component';
 import { ParticipateComponent } from './pages/home/components/participate/participate.component';
+import { CommonModule } from '@angular/common';
+import { ParticipantViewComponent } from './pages/participant-view/participant-view.component';
+import { QrCodeModule } from 'ng-qrcode';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CreateFormComponent,
     SuccesfullyCreateComponent,
-    ParticipateComponent
+    ParticipateComponent,
+    ParticipantViewComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     PrimengModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    QrCodeModule
   ],
   bootstrap: [AppComponent]
 })
