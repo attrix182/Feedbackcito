@@ -8,6 +8,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { PrimengModule } from './shared/primeng/primeng.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CreateFormComponent } from './pages/components/create-form/create-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,8 @@ import { CreateFormComponent } from './pages/components/create-form/create-form.
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     PrimengModule,
     BrowserAnimationsModule
