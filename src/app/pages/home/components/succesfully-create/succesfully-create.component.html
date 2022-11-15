@@ -16,7 +16,7 @@
       {{ event.eventTitle }}
     </h3>
 
-    <qr-code [value]="'https://feedbackcito.netlify.app/#/sesion/{{ event.id }}'" [size]="200"></qr-code>
+    <qr-code [value]="this.url" [size]="200" *ngIf="this.url"></qr-code>
 
     <p [ngClass]="copied ? 'copied' : ''">
       Link:
