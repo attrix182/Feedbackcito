@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { StorageService } from 'src/app/services/sevices/storage.service';
 
 @Component({
@@ -35,15 +36,26 @@ export class HomeComponent implements OnInit {
   idHandled: string;
   event: any;
   loading: boolean = false;
+  actualSection = this.router.url.split('/')[1];
 
-  constructor(private storageSvc: StorageService) {}
+  constructor(private storageSvc: StorageService, private router: Router) {}
 
   ngOnInit(): void {
-    this.handleID('ADFXxwjXcoaV3HaoLPbZ');
+    this.checkUrl();
   }
 
   toggleShowCreate() {
     this.showCreate = !this.showCreate;
+  }
+
+  checkUrl() {
+    if (this.actualSection.length > 1) {
+      this.storageSvc.GetByParameter('events', 'id', this.actualSection).subscribe((res: any) => {
+        console.log(res);
+        this.loading = false;
+        this.event = res[0];
+      });
+    }
   }
 
   handleID(id: string) {
