@@ -1,16 +1,18 @@
 <div class="home-page">
-  <section class="welcome-card" *ngIf="!showCreate">
+  <section class="welcome-card" *ngIf="!showCreate" [@enterAnimation]>
     <h2 class="title text-center">Bienvenido a Feedbackcito</h2>
     <div class="subtitle">
       ¿Que quieres hacer?
       <div class="buttons">
-        <button pButton pRipple class="p-button-raised p-button-primmary" (click)="toggleShowCreate()">Participar</button>
+        <button pButton pRipple class="p-button-raised p-button-primmary" (click)="toggleShowCreate()">
+          Participar
+        </button>
         <button pButton pRipple class="p-button-raised p-button-primmary" (click)="toggleShowCreate()">Crear</button>
       </div>
     </div>
   </section>
 
-  <section *ngIf="showCreate">
+  <section *ngIf="showCreate" [@enterAnimation]>
     <fc-create-form></fc-create-form>
   </section>
 
