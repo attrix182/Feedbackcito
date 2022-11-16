@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { EventSesion } from 'src/app/models/event.model';
+import { Feedback } from 'src/app/models/feedback.model';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -9,9 +11,9 @@ import { StorageService } from 'src/app/services/storage.service';
   styleUrls: ['./feedback-view.component.scss']
 })
 export class FeedbackViewComponent implements OnInit {
-  feedback: any;
+  feedback: Feedback[];
   loading: boolean = true;
-  event: any;
+  event: EventSesion;
   getId = this.router.url.split('/')[2].trim();
 
   constructor(private router: Router, private storageSvc: StorageService, private messageService: MessageService) {}

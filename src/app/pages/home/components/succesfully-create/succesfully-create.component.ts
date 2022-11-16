@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { EventSesion } from 'src/app/models/event.model';
 
 @Component({
   selector: 'fc-succesfully-create',
@@ -8,7 +9,7 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./succesfully-create.component.scss']
 })
 export class SuccesfullyCreateComponent {
-  @Input() event: any;
+  @Input() event: EventSesion;
   copied: boolean = false;
   url: string = '';
 
