@@ -1,13 +1,17 @@
 <section class="feedback-view" *ngIf="!loading">
-<div class="card">
-<div class="title">Resultados</div>
+  <div class="card">
+    <div class="title">Resultados</div>
+    <div class="card-header text-center">
+      <div class="sub">{{event.team}}</div>
+      <div class="sub">{{event.eventTitle}}</div>
+    </div>
 
-<div *ngFor="let i of feedback">
-  <div class="subtitle">{{i.team}}</div>
-</div>
-
-
-</div>
-
-
+    <div *ngFor="let i of feedback">
+      <div class="card-feedback">
+        <strong class="subtitle-name">{{ i.name }}</strong>
+        <strong class="subtitle-name" *ngIf="!i.name">Anonimo</strong>
+        <p class="subtitle">{{ i.feedback }}</p>
+      </div>
+    </div>
+  </div>
 </section>
