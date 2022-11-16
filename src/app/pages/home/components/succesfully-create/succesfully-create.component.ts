@@ -16,7 +16,7 @@ export class SuccesfullyCreateComponent {
   constructor(private messageSvc: MessageService, private router: Router) {}
 
   ngOnInit(): void {
-    this.url = 'https://feedbackcito.netlify.app/#/' + this.event.id;
+    this.url = 'https://feedbackcito.com.ar/#/' + this.event.id;
 
    // this.localStorageManager();
   }
@@ -46,6 +46,6 @@ export class SuccesfullyCreateComponent {
   }
 
   goToPanel() {
-    window.open('https://feedbackcito.netlify.app/#/results/' + this.event.id);
+    window.open('https://feedbackcito.com.ar/#/results/' + this.event.id);
   }
 }
