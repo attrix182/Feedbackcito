@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class FeedbackViewComponent implements OnInit {
   event: any;
   getId = this.router.url.split('/')[2].trim();
 
-  constructor(private router: Router, private storageSvc: StorageService) {}
+  constructor(private router: Router, private storageSvc: StorageService, private messageService: MessageService) {}
 
   ngOnInit(): void {
     this.getFeedback();
@@ -32,7 +33,8 @@ export class FeedbackViewComponent implements OnInit {
     });
   }
 
-  toggleSesion() {
+  onConfirm() {
+    this.messageService.clear('c');
     if (this.event.active) {
       this.event.active = false;
       this.storageSvc.Update(this.getId, 'events', this.event).then(() => {});
@@ -40,5 +42,20 @@ export class FeedbackViewComponent implements OnInit {
       this.event.active = true;
       this.storageSvc.Update(this.getId, 'events', this.event).then(() => {});
     }
+  }
+
+  onReject() {
+    this.messageService.clear('c');
+}
+
+
+  showConfirm() {
+    this.messageService.clear();
+    this.messageService.add({
+      key: 'c',
+      sticky: true,
+      severity: 'warn',
+      summary: '¿Queres cambiar el estado de la sesión?',
+    });
   }
 }
