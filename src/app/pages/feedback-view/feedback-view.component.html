@@ -1,5 +1,14 @@
 <section class="feedback-view" *ngIf="!loading">
   <div class="card">
+    <button
+    pButton
+    class="mt-4 mb-2 p-button-raised"
+    [ngClass]="event.active ? 'p-button-danger': 'p-button-info'"
+    (click)="toggleSesion()"
+  >
+   {{event.active ? 'Desactivar sesión': 'Reactivar sesión'}}
+  </button>
+
     <div class="title">Resultados</div>
     <div class="card-header text-center">
       <div class="sub">{{event.team}}</div>

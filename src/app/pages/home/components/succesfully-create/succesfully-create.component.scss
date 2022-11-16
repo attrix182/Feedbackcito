@@ -33,6 +33,21 @@
     margin-bottom: 20px;
   }
 
+  .status{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: 1.2em;
+  }
+
+  .active{
+    color: forestgreen;
+  }
+
+  .deactive{
+    color: red;
+  }
+
   .buttons {
     margin-top: 4em;
     display: flex;

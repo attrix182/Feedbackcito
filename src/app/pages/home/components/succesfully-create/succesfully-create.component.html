@@ -2,6 +2,7 @@
 
 <section class="create-form">
   <div class="card">
+    <span class="status" [ngClass]="event.active ? 'active': 'deactive'">{{event.active ? 'Activado': 'Desactivado'}}</span>
     <i class="pi pi-question-circle icon" pTooltip="Puedes compartir el QR o el Link, para que otros puedan participar" ></i>
     <div class="title"  >Datos de la sesión</div>
     {{ event.eventDate }}
