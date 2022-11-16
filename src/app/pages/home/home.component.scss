@@ -77,3 +77,9 @@
     font-size: 3em;
   }
 }
+
+@media (min-width: 700px) {
+  .home-page {
+    overflow: hidden;
+  }
+}
