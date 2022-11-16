@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { ParticipantViewComponent } from './pages/participant-view/participant-view.component';
 import { QrCodeModule } from 'ng-qrcode';
 import { FeedbackViewComponent } from './pages/feedback-view/feedback-view.component';
+import { LandingComponent } from './pages/landing/landing.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import { FeedbackViewComponent } from './pages/feedback-view/feedback-view.compo
     SuccesfullyCreateComponent,
     ParticipateComponent,
     ParticipantViewComponent,
-    FeedbackViewComponent
+    FeedbackViewComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,

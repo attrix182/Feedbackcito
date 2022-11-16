@@ -1,6 +1,16 @@
+<div class="landing-icon" pTooltip="Información sobre la web">
+  <i (click)="goToLanding()" class=" pi pi-info-circle"></i>
+</div>
+
 <div class="home-page">
-  <div class="m-4">
-    <button pButton pRipple class="p-button-raised p-button-primmary" (click)="goToLocalEvent()" *ngIf="!succesfullyCreate && eventLocal">
+  <div >
+    <button
+      pButton
+      pRipple
+      class="p-button-raised p-button-primmary"
+      (click)="goToLocalEvent()"
+      *ngIf="!succesfullyCreate && eventLocal"
+    >
       Ir a sesion en curso
     </button>
   </div>
@@ -29,7 +39,7 @@
     <fc-succesfully-create [event]="event"></fc-succesfully-create>
   </section>
 
-  <section *ngIf="showParticipate" [@enterAnimationY]>
+  <section *ngIf="showParticipate && !succesfullyCreate" [@enterAnimationY]>
     <fc-participate (back)="toggleShowParticipate()" [id]="passID"></fc-participate>
   </section>
 

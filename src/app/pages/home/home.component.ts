@@ -84,6 +84,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  goToLanding(){
+    this.router.navigateByUrl('/about/landing')
+  }
+
   handleID(id: string) {
     console.log(id);
     this.idHandled = id;

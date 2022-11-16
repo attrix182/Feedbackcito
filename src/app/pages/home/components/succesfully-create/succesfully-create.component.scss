@@ -6,15 +6,13 @@
 }
 
 .card {
-  min-width: 40vw;
-  min-height: 50vh;
+width: 90%;
+text-align: center;
+
+  padding: 20px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 
   .icon {
     display: flex;
@@ -24,27 +22,28 @@
   }
 
   .title {
-    font-size: 2.5em;
-    text-align: start !important;
+    font-size: 2em;
+    text-align: center;
+
   }
   .subtitle {
-    font-size: 1.3em;
+    font-size: 1.1em;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
-  .status{
+  .status {
     display: flex;
     justify-content: center;
     width: 100%;
     font-size: 1.2em;
   }
 
-  .active{
+  .active {
     color: forestgreen;
   }
 
-  .deactive{
+  .deactive {
     color: red;
   }
 
@@ -63,15 +62,8 @@
   }
 }
 
-@media screen and (max-width: 940px) {
-  .card {
-    min-width: 70vw;
-    min-height: 50vh;
-    background-color: white;
-  }
-}
-
 .copied {
   background-color: #ababffba;
   transition: all 0.5s linear;
 }
+

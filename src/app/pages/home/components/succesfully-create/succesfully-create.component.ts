@@ -15,7 +15,7 @@ export class SuccesfullyCreateComponent {
   constructor(private messageSvc: MessageService, private router: Router) {}
 
   ngOnInit(): void {
-    this.url = 'https://feedbackcito.netlify.app/#/sesion/' + this.event.id;
+    this.url = 'https://feedbackcito.netlify.app/#/' + this.event.id;
 
    // this.localStorageManager();
   }
