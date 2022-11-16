@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { EventSesion } from 'src/app/models/event.model';
 import { StorageService } from 'src/app/services/storage.service';
 import { FormValidator } from 'src/app/shared/primeng/form.validator';
 
@@ -14,7 +15,7 @@ import { FormValidator } from 'src/app/shared/primeng/form.validator';
 export class ParticipantViewComponent extends FormValidator implements OnInit {
   loading: boolean = true;
   getId = this.router.url.split('/')[2].trim();
-  event: any;
+  event: EventSesion;
   override formGroup: any;
 
   constructor(

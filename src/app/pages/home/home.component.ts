@@ -2,6 +2,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { EventSesion } from 'src/app/models/event.model';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -36,12 +37,12 @@ export class HomeComponent implements OnInit {
   succesfullyCreate: boolean = false;
   showParticipate: boolean = false;
   idHandled: string;
-  event: any;
+  event: EventSesion;
   loading: boolean = false;
   actualSection = this.router.url.split('/')[1];
   fullUrl: string = this.router.url;
   passID: string;
-  eventLocal: any;
+  eventLocal: EventSesion;
 
   constructor(private storageSvc: StorageService, private router: Router) {}
 
@@ -84,8 +85,8 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  goToLanding(){
-    this.router.navigateByUrl('/about/landing')
+  goToLanding() {
+    this.router.navigateByUrl('/about/landing');
   }
 
   handleID(id: string) {

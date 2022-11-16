@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
 @Component({
   selector: 'app-root',
