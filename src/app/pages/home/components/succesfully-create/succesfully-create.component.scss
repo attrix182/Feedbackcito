@@ -16,6 +16,13 @@
   flex-direction: column;
   align-items: center;
 
+  .icon {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    font-size: 2em;
+  }
+
   .title {
     font-size: 2.5em;
     text-align: start !important;
