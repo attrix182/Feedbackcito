@@ -7,6 +7,7 @@ import { ParticipantViewComponent } from './pages/participant-view/participant-v
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: ':id',  component: HomeComponent},
+  {path:'info/:id', component: HomeComponent},
   {path:'sesion/:id', component: ParticipantViewComponent},
   {path:'results/:id', component: FeedbackViewComponent},
 ];

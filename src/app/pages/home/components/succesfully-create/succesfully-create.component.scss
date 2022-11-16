@@ -5,22 +5,22 @@
   justify-content: center;
 }
 
-.card{
+.card {
   min-width: 40vw;
   min-height: 50vh;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  .title{
+  .title {
     font-size: 2.5em;
     text-align: start !important;
   }
-  .subtitle{
+  .subtitle {
     font-size: 1.3em;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -42,16 +42,14 @@
 }
 
 @media screen and (max-width: 940px) {
-  .card{
+  .card {
     min-width: 70vw;
     min-height: 50vh;
     background-color: white;
   }
 }
 
-.copied{
+.copied {
   background-color: #ababffba;
   transition: all 0.5s linear;
 }
-
-

@@ -39,18 +39,19 @@ export class CreateFormComponent extends FormValidator implements OnInit {
   nextStep() {
     this.loading = true;
     let form = this.formGroup.value;
-    form.id =  this.cloudFireStore.createId();
+    form.id = this.cloudFireStore.createId();
     this.storageSvc
       .InsertCustomID('events', form.id, this.formGroup.value)
       .then((res) => {
         this.loading = false;
         this.messageService.add({ severity: 'success', summary: '¡Creada!', detail: 'Sesión creada con éxito' });
         this.formGroup.reset();
-        this.nextStepEvent.emit(form.id)
+        this.nextStepEvent.emit(form.id);
       })
       .catch((err) => {
         this.loading = false;
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al crear la sesión' });
       });
   }
+
 }

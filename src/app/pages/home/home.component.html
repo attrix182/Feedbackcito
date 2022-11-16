@@ -1,4 +1,9 @@
 <div class="home-page">
+  <div class="m-4">
+    <button pButton pRipple class="p-button-raised p-button-primmary" (click)="goToLocalEvent()" *ngIf="!succesfullyCreate && eventLocal">
+      Ir a sesion en curso
+    </button>
+  </div>
   <section
     class="welcome-card"
     *ngIf="!showCreate && !succesfullyCreate && !showParticipate && !loading"
@@ -8,7 +13,6 @@
     <div class="subtitle">
       ¿Que quieres hacer?
       <div class="buttons">
-
         <button pButton pRipple class="p-button-raised p-button-primmary" (click)="toggleShowCreate()">Crear</button>
         <button pButton pRipple class="p-button-raised p-button-primmary" (click)="toggleShowParticipate()">
           Participar

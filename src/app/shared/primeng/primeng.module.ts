@@ -9,7 +9,8 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {ToolbarModule} from 'primeng/toolbar';
 import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
-
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 
 const PrimeNGModules = [
@@ -21,6 +22,8 @@ const PrimeNGModules = [
   ToolbarModule,
   ButtonModule,
   CardModule,
+  MessagesModule,
+  MessageModule
 
 ];
 

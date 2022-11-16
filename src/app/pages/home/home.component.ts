@@ -1,6 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -38,12 +39,15 @@ export class HomeComponent implements OnInit {
   event: any;
   loading: boolean = false;
   actualSection = this.router.url.split('/')[1];
+  fullUrl: string = this.router.url;
   passID: string;
+  eventLocal: any;
 
   constructor(private storageSvc: StorageService, private router: Router) {}
 
   ngOnInit(): void {
     this.checkUrl();
+    this.getLocalEvents();
   }
 
   toggleShowCreate() {
@@ -55,6 +59,10 @@ export class HomeComponent implements OnInit {
   }
 
   checkUrl() {
+    if (this?.actualSection.toString().includes('info')) {
+      this.passID = this.fullUrl.split('/')[2];
+      this.handleID(this.passID);
+    }
     if (this.actualSection?.length > 2 && this?.actualSection === 'participate') {
       this.showParticipate = true;
     } else {
@@ -63,6 +71,16 @@ export class HomeComponent implements OnInit {
       }
       this.showParticipate = true;
       this.passID = this.actualSection;
+    }
+  }
+
+  getLocalEvents() {
+    this.eventLocal = JSON.parse(localStorage.getItem('events'));
+  }
+
+  goToLocalEvent() {
+    if (this.eventLocal) {
+      this.router.navigate(['/info/', this.eventLocal.id]);
     }
   }
 
