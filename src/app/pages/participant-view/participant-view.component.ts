@@ -48,6 +48,11 @@ export class ParticipantViewComponent extends FormValidator implements OnInit {
     this.storageSvc.InsertCustomID('feedbacks',this.cloudFireStore.createId(), this.formGroup.value).then((res: any) => {
       console.log(res);
       this.messageSvc.add({ severity: 'success', summary: 'Exito', detail: 'Gracias por tu feedback' });
+      this.formGroup.reset();
+      setTimeout(() => {
+        this.router.navigateByUrl('');
+      }, 800);
+
     });
   }
 
