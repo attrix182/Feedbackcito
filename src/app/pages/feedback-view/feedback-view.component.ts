@@ -10,6 +10,7 @@ import { StorageService } from 'src/app/services/storage.service';
 export class FeedbackViewComponent implements OnInit {
   feedback:any;
   loading: boolean = true;
+  event:any;
   getId = this.router.url.split('/')[2].trim();
 
 
@@ -24,8 +25,13 @@ export class FeedbackViewComponent implements OnInit {
     this.storageSvc.GetByParameter('feedbacks', 'id', this.getId).subscribe((res:any)=>{
       this.feedback = res;
       console.log(this.feedback);
-      this.loading = false;
+
     })
+
+    this.storageSvc.GetByParameter('events', 'id', this.getId).subscribe((res:any)=>{
+      this.event = res[0];
+      this.loading = false;
+    });
   }
 
 }
