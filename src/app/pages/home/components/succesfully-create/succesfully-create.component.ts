@@ -17,7 +17,11 @@ export class SuccesfullyCreateComponent {
   ngOnInit(): void {
     this.url = 'https://feedbackcito.netlify.app/#/sesion/' + this.event.id;
 
-    this.localStorageManager();
+   // this.localStorageManager();
+  }
+
+  removeLocalEvent(){
+   localStorage.removeItem("events")
   }
 
   localStorageManager() {
