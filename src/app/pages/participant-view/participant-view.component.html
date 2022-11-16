@@ -1,7 +1,7 @@
 <section class="participation-section" *ngIf="!loading">
-  <div class="card">
-    <div class="title">{{ event.team }}</div>
-    <div class="subtitle">{{ event.eventTitle }}</div>
+  <div class="card"  *ngIf="!loading && event.active">
+    <div class="title">Equipo: {{ event.team }}</div>
+    <div class="subtitle">Evento: {{ event.eventTitle }}</div>
 
     <form
      [formGroup]="formGroup"
@@ -21,6 +21,22 @@
       Enviar
     </button>
   </div>
+
+  <div *ngIf="!loading && !event.active">
+    <div class="card">
+      <div class="title">Equipo: {{ event.team }}</div>
+      <div class="subtitle">Evento: {{ event.eventTitle }}</div>
+      <h1>Esta sesion ya no esta activa</h1>
+      <button
+      pButton
+      class="mt-4 mb-2 p-button-raised p-button-primmary"
+      routerLink="/"
+    >
+      Volver al Home
+    </button>
+    </div>
+  </div>
+
 </section>
 
 <p-toast position="top-right" class="p-toast"></p-toast>

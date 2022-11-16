@@ -2,28 +2,29 @@
 
 <section class="create-form">
   <div class="card">
-    <div class="title">Datos de la sesión</div>
+    <i class="pi pi-question-circle icon" pTooltip="Puedes compartir el QR o el Link, para que otros puedan participar" ></i>
+    <div class="title"  >Datos de la sesión</div>
     {{ event.eventDate }}
 
     <h2>
-      {{ event.team }}
+      Equipo: {{ event.team }}
     </h2>
     <h3>
-      {{ event.eventTitle }}
+      Evento: {{ event.eventTitle }}
     </h3>
 
     <qr-code [value]="this.url" [size]="200" *ngIf="this.url"></qr-code>
-    <div class="subtitle">Código: {{ event.id }}</div>
+    <div class="subtitle" pTooltip="Puedes utilizar este codigo en la parte Participar, de la home">Código: {{ event.id }}</div>
     <p [ngClass]="copied ? 'copied' : ''">
       Link:
-      <a href="https://feedbackcito.netlify.app/#/sesion/{{ event.id }}" id="eventLink"
+      <a target="_blank" href="https://feedbackcito.netlify.app/#/sesion/{{ event.id }}" id="eventLink"
         >https://feedbackcito.netlify.app/#/sesion/{{ event.id }}</a
       >
     </p>
 
     <div class="buttons mt-4">
       <button pButton class="p-button-raised p-button-primmary" (click)="copyLink()">Copiar link</button>
-      <button pButton class="p-button-raised p-button-primmary" (click)="goToPanel()">Ver respuestas</button>
+      <button pButton class="p-button-raised p-button-primmary" (click)="goToPanel()" pTooltip="Haz click para ir a ver que estan respondiendo">Ver respuestas</button>
     </div>
   </div>
 </section>
