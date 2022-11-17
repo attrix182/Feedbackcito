@@ -17,6 +17,9 @@ export class ParticipateComponent implements OnInit {
 
   goToSesion() {
     if (this.sesionId.length > 5) {
+      if(this.sesionId.includes('https')){
+        this.sesionId = this.sesionId.split('/')[4];
+      }
       this.router.navigate(['/sesion/', this.sesionId.trim()]);
     }
   }

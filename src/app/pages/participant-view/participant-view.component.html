@@ -15,10 +15,11 @@
     <button
       pButton
       class="mt-4 mb-2 p-button-raised p-button-primmary"
-      [disabled]="formGroup.invalid"
+      [disabled]="formGroup.invalid && !loadingBtn"
       (click)="sendFeedback()"
     >
-      Enviar
+    <p-progressSpinner *ngIf="loadingBtn"  [style]="{width: '50px', height: '50px'}" fill="#3e51b5"  styleClass="custom-spinner" strokeWidth="8" ></p-progressSpinner>
+     <div *ngIf="!loadingBtn">Enviar</div>
     </button>
   </div>
 
