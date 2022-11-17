@@ -11,7 +11,7 @@ import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
-
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 const PrimeNGModules = [
   InputTextModule,
@@ -23,8 +23,8 @@ const PrimeNGModules = [
   ButtonModule,
   CardModule,
   MessagesModule,
-  MessageModule
-
+  MessageModule,
+  ProgressSpinnerModule,
 ];
 
 @NgModule({

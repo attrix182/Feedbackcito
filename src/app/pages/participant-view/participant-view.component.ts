@@ -13,7 +13,8 @@ import { FormValidator } from 'src/app/shared/primeng/form.validator';
   styleUrls: ['./participant-view.component.scss']
 })
 export class ParticipantViewComponent extends FormValidator implements OnInit {
-  loading: boolean = true;
+  loading: boolean = false;
+  loadingBtn: boolean = false;
   getId = this.router.url.split('/')[2].trim();
   event: EventSesion;
   override formGroup: any;
@@ -44,17 +45,22 @@ export class ParticipantViewComponent extends FormValidator implements OnInit {
   }
 
   sendFeedback() {
+
+    this.loadingBtn = true;
     this.formGroup.value.id = this.getId;
 
-    this.storageSvc.InsertCustomID('feedbacks',this.cloudFireStore.createId(), this.formGroup.value).then((res: any) => {
-      console.log(res);
-      this.messageSvc.add({ severity: 'success', summary: 'Exito', detail: 'Gracias por tu feedback' });
-      this.formGroup.reset();
-      setTimeout(() => {
-        this.router.navigateByUrl('');
-      }, 800);
-
-    });
+    this.storageSvc
+      .InsertCustomID('feedbacks', this.cloudFireStore.createId(), this.formGroup.value)
+      .then((res: any) => {
+        console.log(res);
+        this.messageSvc.add({ severity: 'success', summary: 'Exito', detail: 'Gracias por tu feedback' });
+        this.formGroup.reset();
+        this.loading = false;
+        this.loadingBtn = false;
+        setTimeout(() => {
+          this.router.navigateByUrl('');
+        }, 1500);
+      });
   }
 
   getSesion() {
