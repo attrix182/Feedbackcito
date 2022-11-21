@@ -36,7 +36,7 @@ import { LandingComponent } from './pages/landing/landing.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     PrimengModule,
     BrowserAnimationsModule,
-    QrCodeModule
+    QrCodeModule,
   ],
   bootstrap: [AppComponent]
 })
