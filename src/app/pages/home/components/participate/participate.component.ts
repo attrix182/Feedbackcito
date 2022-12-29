@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 @Component({
   selector: 'fc-participate',
@@ -8,11 +8,10 @@ import { Router } from '@angular/router';
 export class ParticipateComponent implements OnInit {
   @Input('id') sesionId: string = '';
   @Output('back') goBack: any = new EventEmitter();
-
-  constructor(private router: Router) {}
+  router = inject(Router);
 
   ngOnInit(): void {
-
+    this.sesionId =  this.router.url.split('/')[1];
   }
 
   goToSesion() {

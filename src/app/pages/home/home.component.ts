@@ -1,10 +1,8 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
 import { EventSesion } from 'src/app/models/event.model';
 import { StorageService } from 'src/app/services/storage.service';
-
 @Component({
   selector: 'fc-home',
   templateUrl: './home.component.html',
@@ -34,21 +32,18 @@ import { StorageService } from 'src/app/services/storage.service';
 })
 export class HomeComponent implements OnInit {
   showCreate: boolean = false;
-  succesfullyCreate: boolean = false;
   showParticipate: boolean = false;
-  idHandled: string;
-  event: EventSesion;
-  loading: boolean = false;
-  actualSection = this.router.url.split('/')[1];
+  succesfullyCreate: boolean = false;
+  isLoading: boolean = false;
+  actualSection: string = this.router.url.split('/')[1];
   fullUrl: string = this.router.url;
-  passID: string;
-  eventLocal: EventSesion;
+  event: EventSesion;
+  eventID: string = this.fullUrl.split('/')[2];
 
   constructor(private storageSvc: StorageService, private router: Router) {}
 
   ngOnInit(): void {
     this.checkUrl();
-    this.getLocalEvents();
   }
 
   toggleShowCreate() {
@@ -59,44 +54,32 @@ export class HomeComponent implements OnInit {
     this.showParticipate = !this.showParticipate;
   }
 
+  goToLanding() {
+    this.router.navigateByUrl('/about/landing');
+  }
+
   checkUrl() {
     if (this?.actualSection.toString().includes('info')) {
-      this.passID = this.fullUrl.split('/')[2];
-      this.handleID(this.passID);
+      this.handleID();
     }
-    if (this.actualSection?.length > 2 && this?.actualSection === 'participate') {
+    if (this?.actualSection === 'participate') {
       this.showParticipate = true;
     } else {
       if (this.actualSection.length < 2) {
         return;
       }
       this.showParticipate = true;
-      this.passID = this.actualSection;
     }
   }
 
-  getLocalEvents() {
-    this.eventLocal = JSON.parse(localStorage.getItem('events'));
-  }
 
-  goToLocalEvent() {
-    if (this.eventLocal) {
-      this.router.navigate(['/info/', this.eventLocal.id]);
-    }
-  }
-
-  goToLanding() {
-    this.router.navigateByUrl('/about/landing');
-  }
-
-  handleID(id: string) {
-    console.log(id);
-    this.idHandled = id;
-    this.loading = true;
+  handleID($event?: Event) {
+    console.log($event);
+    this.isLoading = true;
     this.showCreate = false;
-    this.storageSvc.GetByParameter('events', 'id', id).subscribe((res: any) => {
-      console.log(res);
-      this.loading = false;
+    $event ? this.eventID = $event.toString() : this.eventID;
+    this.storageSvc.GetByParameter('events', 'id', this.eventID).subscribe((res: any) => {
+      this.isLoading = false;
       this.event = res[0];
       this.succesfullyCreate = true;
     });
