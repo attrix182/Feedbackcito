@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "feedbackcito:build:production"
+              "buildTarget": "feedbackcito:build:production"
             },
             "development": {
-              "browserTarget": "feedbackcito:build:development"
+              "buildTarget": "feedbackcito:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "feedbackcito:build"
+            "buildTarget": "feedbackcito:build"
           }
         },
         "test": {
