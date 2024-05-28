@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -24,7 +23,6 @@ export class ParticipantViewComponent extends FormValidator implements OnInit {
     private router: Router,
     private fb: UntypedFormBuilder,
     private messageSvc: MessageService,
-    private cloudFireStore: AngularFirestore
   ) {
     super();
     this.loading = true;
@@ -50,7 +48,7 @@ export class ParticipantViewComponent extends FormValidator implements OnInit {
     this.formGroup.value.id = this.getId;
 
     this.storageSvc
-      .InsertCustomID('feedbacks', this.cloudFireStore.createId(), this.formGroup.value)
+      .insertCustomID('feedbacks', Math.random().toString(36).substring(2), this.formGroup.value)
       .then((res: any) => {
         console.log(res);
         this.messageSvc.add({ severity: 'success', summary: 'Exito', detail: 'Gracias por tu feedback' });
@@ -68,7 +66,7 @@ export class ParticipantViewComponent extends FormValidator implements OnInit {
 
     let aux = this.getId.trim();
 
-    this.storageSvc.GetByParameter('events', 'id', aux).subscribe((res: any) => {
+    this.storageSvc.getByParameter('events', 'id', aux).subscribe((res: any) => {
       console.log(res[0]);
       this.event = res[0];
       this.loading = false;

@@ -13,7 +13,9 @@ export const environment = {
     appId: "1:999491895502:web:0420933fc256df01e5d09f",
     measurementId: "G-6RN7Z3S6N9"
   },
+  apiKeyGoogle: 'AIzaSyCRcyKv-Ke63Z1XBClmAD9IAGIYhSCFFEU',
   url_deploy: 'http://feedbackcito.com.ar/#/'
+
 };
 
 /*

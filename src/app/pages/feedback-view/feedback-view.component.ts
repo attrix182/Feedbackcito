@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { EventSesion } from 'src/app/models/event.model';
 import { Feedback } from 'src/app/models/feedback.model';
+import { AiService } from 'src/app/services/ai.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -15,8 +16,12 @@ export class FeedbackViewComponent implements OnInit {
   loading: boolean = true;
   event: EventSesion;
   getId = this.router.url.split('/')[2].trim();
+  loadingIA: boolean = false;
 
-  constructor(private router: Router, private storageSvc: StorageService, private messageService: MessageService) {}
+  iaResponse: string;
+  showIAmodal: boolean = false;
+
+  constructor(private router: Router, private storageSvc: StorageService, private messageService: MessageService, private AIservice: AiService) {}
 
   ngOnInit(): void {
     this.getFeedback();
@@ -24,12 +29,12 @@ export class FeedbackViewComponent implements OnInit {
 
   getFeedback() {
     this.loading = true;
-    this.storageSvc.GetByParameter('feedbacks', 'id', this.getId).subscribe((res: any) => {
+    this.storageSvc.getByParameter('feedbacks', 'id', this.getId).subscribe((res: any) => {
       this.feedback = res;
       console.log(this.feedback);
     });
 
-    this.storageSvc.GetByParameter('events', 'id', this.getId).subscribe((res: any) => {
+    this.storageSvc.getByParameter('events', 'id', this.getId).subscribe((res: any) => {
       this.event = res[0];
       this.loading = false;
     });
@@ -37,13 +42,12 @@ export class FeedbackViewComponent implements OnInit {
 
   onConfirm() {
     this.messageService.clear('c');
-    if (this.event.active) {
-      this.event.active = false;
-      this.storageSvc.Update(this.getId, 'events', this.event).then(() => {});
-    } else {
-      this.event.active = true;
-      this.storageSvc.Update(this.getId, 'events', this.event).then(() => {});
-    }
+    console.log(this.getId);
+    this.feedback.forEach((element) => {
+      this.storageSvc.delete('feedbacks', element.id).then(() => {
+        this.messageService.add({severity:'success', summary: 'Respuestas eliminadas', detail: 'Las respuestas han sido eliminadas'});
+      })
+    })
   }
 
   onReject() {
@@ -57,7 +61,23 @@ export class FeedbackViewComponent implements OnInit {
       key: 'c',
       sticky: true,
       severity: 'warn',
-      summary: '¿Queres cambiar el estado de la sesión?',
+      summary: '¿Quieres eliminar todas las respuestas?',
     });
   }
+
+
+  async getIA(){
+    this.loadingIA = true;
+    if(this.iaResponse){
+      this.showIAmodal = true;
+      return;
+    }
+    const prompt = `Genera un resumen conciso para facilitar la comprensión de las respuestas que se muestran a continuacion: ${JSON.stringify(this.feedback)}`
+    const result = await this.AIservice.model.generateContent(prompt);
+    const response = await result.response;
+    this.iaResponse = response.text();
+    this.loadingIA = false;
+    this.showIAmodal = true;
+  }
+
 }

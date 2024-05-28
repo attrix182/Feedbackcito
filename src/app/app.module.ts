@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AngularFireModule } from '@angular/fire';
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +18,8 @@ import { ParticipantViewComponent } from './pages/participant-view/participant-v
 import { QrCodeModule } from 'ng-qrcode';
 import { FeedbackViewComponent } from './pages/feedback-view/feedback-view.component';
 import { LandingComponent } from './pages/landing/landing.component';
+import { getAnalytics } from 'firebase/analytics';
+import { provideAnalytics } from '@angular/fire/analytics';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,10 +37,14 @@ import { LandingComponent } from './pages/landing/landing.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
     PrimengModule,
     BrowserAnimationsModule,
     QrCodeModule,
+  ],
+  providers: [
+      provideFirebaseApp(() => initializeApp({ ...environment.firebaseConfig })),
+      provideFirestore(() => getFirestore()),
+      provideAnalytics(() => getAnalytics()),
   ],
   bootstrap: [AppComponent]
 })

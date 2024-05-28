@@ -12,6 +12,7 @@ import {CardModule} from 'primeng/card';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { DialogModule } from 'primeng/dialog';
 
 const PrimeNGModules = [
   InputTextModule,
@@ -25,6 +26,8 @@ const PrimeNGModules = [
   MessagesModule,
   MessageModule,
   ProgressSpinnerModule,
+  DynamicDialogModule,
+  DialogModule
 ];
 
 @NgModule({

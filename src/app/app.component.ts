@@ -1,6 +1,7 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
-import { AngularFireAnalytics } from '@angular/fire/analytics';
+import { Analytics } from '@angular/fire/analytics';
+import { logEvent } from 'firebase/analytics';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,12 +9,14 @@ import { AngularFireAnalytics } from '@angular/fire/analytics';
 })
 export class AppComponent implements AfterViewInit {
 
-  constructor(private primengConfig: PrimeNGConfig,private analytics: AngularFireAnalytics) {
+  private analytics: Analytics = inject(Analytics);
+
+  constructor(private primengConfig: PrimeNGConfig) {
     this.primengConfig.ripple = true;
   }
 
   ngAfterViewInit() {
-    this.analytics.logEvent('page_view_home');
+    logEvent(this.analytics, 'page_view_home');
   }
 
 }

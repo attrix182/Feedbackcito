@@ -1,13 +1,20 @@
 <section class="feedback-view" *ngIf="!loading">
   <div class="card">
-    <button
-      pButton
-      class="mt-4 mb-2 p-button-raised"
-      [ngClass]="event.active ? 'p-button-danger' : 'p-button-info'"
-      (click)="showConfirm()"
-    >
-      {{ event.active ? 'Desactivar sesión' : 'Reactivar sesión' }}
-    </button>
+    <div class="feedback-view__header">
+      <button
+        pButton
+        class="mt-4 mb-2 p-button-raised"
+        [ngClass]="event.active ? 'p-button-danger' : 'p-button-info'"
+        (click)="showConfirm()"
+      >
+        Eliminar feedbacks
+      </button>
+
+      <div class="right-buttons">
+        <button pButton class="mt-4 mb-2 p-button-raised p-button-info" (click)="getIA()" [disabled]="feedback.length < 1">Análisis con IA</button>
+
+      </div>
+    </div>
 
     <div class="title">Resultados</div>
     <div class="card-header text-center">
@@ -44,3 +51,12 @@
     </div>
   </ng-template>
 </p-toast>
+
+<p-dialog header="Análisis con IA" [modal]="true" [(visible)]="showIAmodal" [style]="{ width: '45rem' }">
+  <div>
+    {{ iaResponse }}
+  </div>
+  <div class="flex justify-content-end gap-2">
+    <p-button label="Aceptar" severity="primary" (click)="showIAmodal = false" />
+  </div>
+</p-dialog>
