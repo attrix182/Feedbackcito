@@ -1,75 +1,75 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { Inject, Injectable, inject } from '@angular/core';
+import { Firestore, collection, doc, setDoc, getDocs, query, where, updateDoc, deleteDoc, DocumentData, collectionSnapshots } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { writeBatch } from 'firebase/firestore';
+
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
-  constructor(private cloudFireStore: AngularFirestore) {}
 
-  Insert(collectionName: string, data: any) {
-    data.id = this.cloudFireStore.createId();
-    return this.cloudFireStore.collection(collectionName).doc(data.id).set(data);
+  firestore: Firestore = inject(Firestore);
+
+  constructor() {}
+
+  async insert(collectionName: string, data: any): Promise<void> {
+    const docRef = doc(collection(this.firestore, collectionName));
+    data.id = docRef.id;
+    await setDoc(docRef, data);
   }
 
-  ReturnFirestore() {
-    return this.cloudFireStore;
+  getFirestore() {
+    return this.firestore;
   }
 
-  InsertCustomID(collectionName: string, idCustom: any, data: any) {
-    return this.cloudFireStore.collection(collectionName).doc(idCustom).set(data);
+  async insertCustomID(collectionName: string, idCustom: any, data: any): Promise<void> {
+    const docRef = doc(this.firestore, `${collectionName}/${idCustom}`);
+    await setDoc(docRef, data);
   }
 
-  GetAll(collectionName: string) {
-    return this.cloudFireStore
-      .collection(collectionName)
-      .snapshotChanges()
-      .pipe(
-        map((actions) =>
-          actions.map((a) => {
-            const data: any = a.payload.doc.data();
-            data.id = a.payload.doc.id;
-            return data;
-          })
-        )
-      );
+  getAll(collectionName: string): Observable<any[]> {
+    const colRef = collection(this.firestore, collectionName);
+    return collectionSnapshots(colRef).pipe(
+      map(actions => actions.map(a => {
+        const data = a.data() as DocumentData;
+        data['id']= a.id;
+        return data;
+      }))
+    );
   }
 
-  GetByParameter(collection: string, parametro: string, value: any) {
-    return this.cloudFireStore
-      .collection<any>(collection, (ref) => ref.where(parametro, '==', value))
-      .snapshotChanges()
-      .pipe(
-        map((actions) =>
-          actions.map((a) => {
-            const data: any = a.payload.doc.data();
-            data.id = a.payload.doc.id;
-            return data;
-          })
-        )
-      );
+  getByParameter(collectionName: string, parametro: string, value: any): Observable<any[]> {
+    const colRef = collection(this.firestore, collectionName);
+    const q = query(colRef, where(parametro, '==', value));
+    return collectionSnapshots(q).pipe(
+      map(actions => actions.map(a => {
+        const data = a.data() as DocumentData;
+        data['id'] = a.id;
+        return data;
+      }))
+    );
   }
 
-  Update(id: string, collectionName: string, data: any) {
-    return this.cloudFireStore
-      .collection(collectionName)
-      .doc(id)
-      .update({ ...data });
+  async update(id: string, collectionName: string, data: any): Promise<void> {
+    const docRef = doc(this.firestore, `${collectionName}/${id}`);
+    await updateDoc(docRef, data);
   }
 
-  DeleteColecction(collectionName: string): any {
-    return this.cloudFireStore
-      .collection(collectionName)
-      .get()
-      .toPromise()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          doc.ref.delete();
-        });
-      });
+  async deleteCollection(collectionName: string): Promise<void> {
+    const colRef = collection(this.firestore, collectionName);
+    const snapshot = await getDocs(colRef);
+    const batch = writeBatch(this.firestore);
+
+    snapshot.forEach(doc => {
+      batch.delete(doc.ref);
+    });
+
+    await batch.commit();
   }
 
-  Delete(collectionName: string, id: string) {
-    return this.cloudFireStore.collection(collectionName).doc(id).delete();
+  async delete(collectionName: string, id: string): Promise<void> {
+    const docRef = doc(this.firestore, `${collectionName}/${id}`);
+    await deleteDoc(docRef);
   }
 }
